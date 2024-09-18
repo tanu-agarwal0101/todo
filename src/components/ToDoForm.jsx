@@ -10,9 +10,6 @@ function TodoForm() {
         e.preventDefault()
         if(!todo) return
         addTodo({todo, completed:false})
-        //could have written todo:todo like with completed but if key and value name is same then we can skip it
-        //id already Date.now() se denge addTodo mein
-
         setTodo('')
     }
    return (
