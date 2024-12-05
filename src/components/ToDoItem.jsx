@@ -1,11 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React from 'react'
 import { useState } from 'react';
 import { useToDo } from '../context/ToDoContext';
 
-function TodoItem({ todo }) {//pura object todo hai
-    
+function TodoItem({ todo }) {
     const [isTodoEditable, setIsTodoEditable] = useState(false)
     const [todoMsg, setTodoMsg] = useState(todo.todo)
     const {updateTodo, deleteTodo, toggleComplete}= useToDo()
@@ -14,12 +11,10 @@ function TodoItem({ todo }) {//pura object todo hai
     const editTodo =()=>{
         if (!todo) return;
         updateTodo(todo.id, {...todo, todo: todoMsg})
-        //to update todo msg pura object spread kar lia and ek value update kar di jisme msg tha
         setIsTodoEditable(false)
     }
     const toggleCompleted = ()=>{
         if (!todo) return;
-        //console.log(todo.id);
         toggleComplete(todo.id)//from context
     }
    return (

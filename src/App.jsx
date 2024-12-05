@@ -8,11 +8,9 @@ import PomodoroTimer from "./components/PomodoroTime"
 
 
 function App() {
-  const [todos, setTodos] = useState([]) //empty array because null will create problems in loop
-  //state has all the todos, not individual
+  const [todos, setTodos] = useState([]) l
 
   const addTodo =(todo)=>{
-    //setTodos(todo) //with this all old values will get reset
     setTodos((prev)=>[{id:Date.now(), ...todo}, ...prev])
   }
 
@@ -21,39 +19,27 @@ function App() {
     if (!todo) return; // or throw an error
     //todos.map((todo)=> console.log(todo.id))
     setTodos((prev)=>prev.map(
-      //prevTodo is saare todos mein se ek
       (prevTodo)=>
         (prevTodo.id === id? todo:prevTodo)
       ))
-      //setTodo as todo if id matches
-
   }
 
 
   const deleteTodo = (id)=>{
-    //now we have to form new array which will have all the todos except the one whose id is given
-    //map looping not preferred
     setTodos((prev)=> prev.filter((todo)=> todo.id!==id))
-    //filter works for only true
-    //if id does not match, then passed otherwise removed
   }
 
   const toggleComplete = (id)=>{
     setTodos((prev)=>
       prev.map((prevTodo)=> 
         prevTodo.id === id ? {...prevTodo, completed: !prevTodo.completed} : prevTodo))
-    //match nhi karta hai toh prevTodo remains prevTodo
-    //agar match karta hai toh baaki values as it is, only one value changed (values: id, todo, completed)
-    //completed: !prevTodo.completed, purani value ko overwrite kar dia
   }
   
   useEffect(()=>{
     //local storage can be directly accessed in react so long as we are not working in server side rendering
     //if everything on serverside then nothing reaches browser so how do we save it on save it on browser?
-    //local storage is about storage in browser memeory like
+    //local storage is about storage in broowser memeory like
     const todos= JSON.parse(localStorage.getItem('todos'))
-    //return string so JSON.parse
-    //console.log(todos.length); //returns no. tasks
     if(todos && todos.length>0){
       setTodos(todos.filter((todo)=> todo!==null))
     }
@@ -65,10 +51,6 @@ function App() {
   useEffect(()=>{  
     localStorage.setItem('todos', JSON.stringify(todos))    
     console.log(len);
-    
-
-    //should be same name of key in set and get: todos(anything but same)
-    //only accepts string so JSON.stringify
   }, [todos])
 
   const categorizeTasks = (todos) => {
@@ -126,32 +108,21 @@ const handlePomodoroComplete = (isBreak) => {
           
           <div className="my-10"><TaskCount total={len} complete={compLen}/></div>
           <div className="my-4">
-            {/* Todo form goes here */} 
             <TodoForm />
           </div>
-          {/* <div>{compLen}/{len}</div> */}
           <div className="flex flex-wrap gap-y-3">
             {/*Loop and Add TodoItem here */}
             {/* har ek todoItem ek single Todo hai */}
              {/* //using () means auto return, {} then return keyword necessary
               //if (!todo) return null; // or return an empty fragment <></> */}
-              
-              {Object.entries(categorizedTasks).map(([key, tasks]) => (
-                        <div key={key} className="w-full">
-                            <h3 className="text-lg font-bold">{key === 'Q1' ? 'Urgent & Important' : key === 'Q2' ? 'Not Urgent & Important' : key === 'Q3' ? 'Urgent & Not Important' : 'Not Urgent & Not Important'}</h3>
-                            <ul>
-                                {tasks.map((todo) => (
-                                    <li key={todo.id}>
-                                        <TodoItem todo={todo} />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-              ))}
-
-
-
-              {/* */}
+              {todos.map((todo) => {
+              if (!todo) return null; // or return an empty fragment <></>
+              return (
+                <div key={todo.id} className='w-full'>
+                  <TodoItem todo={todo} />
+                </div>
+              );
+            })}
           </div>
         </div>
         
