@@ -8,7 +8,7 @@ import PomodoroTimer from "./components/PomodoroTime"
 
 
 function App() {
-  const [todos, setTodos] = useState([]) l
+  const [todos, setTodos] = useState([]) ;
 
   const addTodo =(todo)=>{
     setTodos((prev)=>[{id:Date.now(), ...todo}, ...prev])
