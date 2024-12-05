@@ -6,7 +6,9 @@ export const ToDoContext = createContext({
         {
             id:1,
             todo: "todo message",
-            completed: false
+            completed: false,
+            urgency: "urgent",
+            priority: "important"
         },// {}, {}
     ],
     addTodo: (todo)=>{}, //only references
