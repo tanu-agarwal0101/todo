@@ -28,7 +28,7 @@ function TodoForm() {
                 <option value="Important" className=''>Important</option>
                 <option value="Not Important">Not Important</option>
             </select>
-            <select value={urgency} onChange={(e) => setUrgency(e.target.value)} className="bg-white/20 pl-5 pr-4 text-black">
+            <select value={urgency} onChange={(e) => setUrgency(e.target.value)} className="bg-white/20 lg:pl-5 lg:pr-4 text-black">
                 <option value="Urgent">Urgent</option>
                 <option value="Not Urgent">Not Urgent</option>
             </select>
