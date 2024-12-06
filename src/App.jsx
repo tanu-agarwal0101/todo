@@ -36,9 +36,6 @@ function App() {
   }
   
   useEffect(()=>{
-    //local storage can be directly accessed in react so long as we are not working in server side rendering
-    //if everything on serverside then nothing reaches browser so how do we save it on save it on browser?
-    //local storage is about storage in broowser memeory like
     const todos= JSON.parse(localStorage.getItem('todos'))
     if(todos && todos.length>0){
       setTodos(todos.filter((todo)=> todo!==null))
@@ -83,11 +80,6 @@ const handlePomodoroComplete = (isBreak) => {
       alert("Break time is over! Get back to work!");
   } else {
       alert("Time to take a break!");
-      // Optionally, you can also mark a task as completed here
-      // For example, if you want to mark the first task as completed:
-      // if (todos.length > 0) {
-      //     updateTodo(todos[0].id, { completed: true });
-      // }
       if (todos.length > 0) {
         updateTodo(todos[0].id, { completed: true });
     }
@@ -111,10 +103,6 @@ const handlePomodoroComplete = (isBreak) => {
             <TodoForm />
           </div>
           <div className="flex flex-wrap gap-y-3">
-            {/*Loop and Add TodoItem here */}
-            {/* har ek todoItem ek single Todo hai */}
-             {/* //using () means auto return, {} then return keyword necessary
-              //if (!todo) return null; // or return an empty fragment <></> */}
               {Object.entries(categorizedTasks).map(([key, tasks]) => (
                         <div key={key} className="w-full">
                             <h3 className="text-lg font-bold">{key === 'Q1' ? 'Urgent & Important' : key === 'Q2' ? 'Not Urgent & Important' : key === 'Q3' ? 'Urgent & Not Important' : 'Not Urgent & Not Important'}</h3>
