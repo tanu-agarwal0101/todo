@@ -42,12 +42,12 @@ const PomodoroTimer = ({ onComplete }) => {
 
     return (
         <div className="pomodoro-timer text-white text-center">
-            <h1 className='text-white mt-10 font-bold text-2xl'>{isBreak ? 'Break Time!' : 'Focus Time!'}</h1>
+            <h1 className='text-white/90 mt-10 font-bold uppercase text-4xl p-8'>{isBreak ? 'Break Time!' : 'Focus Time!'}</h1>
             <div className="timer">{formatTime(timeLeft)}</div>
-            <div className='flex gap-2 justify-center '>
-            <button onClick={startTimer} disabled={isActive} className='bg-green-500 font-semibold px-4 py-2'>Start</button>
-            <button onClick={stopTimer} disabled={!isActive} className='bg-green-500 font-semibold px-4 py-2'>Stop</button>
-            <button onClick={resetTimer} className='bg-green-500 font-semibold px-4 py-2'>Reset</button>
+            <div className='flex gap-2 justify-center py-4 '>
+            <button onClick={startTimer} disabled={isActive} className='bg-green-500 hover:bg-green-400 hover:text-white/100 font-semibold px-4 py-2'>Start</button>
+            <button onClick={stopTimer} disabled={!isActive} className='bg-green-500 hover:bg-green-400 hover:text-white/100 font-semibold px-4 py-2'>Stop</button>
+            <button onClick={resetTimer} className='bg-green-500 hover:bg-green-400 hover:text-white/100 font-semibold px-4 py-2'>Reset</button>
             </div>
         </div>
     );

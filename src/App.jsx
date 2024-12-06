@@ -8,7 +8,7 @@ import PomodoroTimer from "./components/PomodoroTime"
 
 
 function App() {
-  const [todos, setTodos] = useState([]) l
+  const [todos, setTodos] = useState([]);
 
   const addTodo =(todo)=>{
     setTodos((prev)=>[{id:Date.now(), ...todo}, ...prev])
@@ -100,9 +100,9 @@ const handlePomodoroComplete = (isBreak) => {
     <ToDoProvider value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}>
       <div className="bg-[#172842] min-h-screen py-8">
         <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
-          <h1 className="text-2xl font-bold mb-8 mt-2 text-start">
-          <span className="bg-white text-black px-2 mr-4 py-0 flex items-center w-max mb-2">+</span>
-            Todos
+          <h1 className="text-2xl font-bold mb-8 mt-2 text-start font-serif">
+          <span className="  px-2 mr-4 py-0 flex items-center w-max mb-2 bg-gradient-to-r from-pink-500 to-blue-400">+</span>
+            ORGANIZR
             <span><PomodoroTimer onComplete={handlePomodoroComplete} /></span>
           </h1>
           
@@ -115,14 +115,18 @@ const handlePomodoroComplete = (isBreak) => {
             {/* har ek todoItem ek single Todo hai */}
              {/* //using () means auto return, {} then return keyword necessary
               //if (!todo) return null; // or return an empty fragment <></> */}
-              {todos.map((todo) => {
-              if (!todo) return null; // or return an empty fragment <></>
-              return (
-                <div key={todo.id} className='w-full'>
-                  <TodoItem todo={todo} />
-                </div>
-              );
-            })}
+              {Object.entries(categorizedTasks).map(([key, tasks]) => (
+                        <div key={key} className="w-full">
+                            <h3 className="text-lg font-bold">{key === 'Q1' ? 'Urgent & Important' : key === 'Q2' ? 'Not Urgent & Important' : key === 'Q3' ? 'Urgent & Not Important' : 'Not Urgent & Not Important'}</h3>
+                            <ul>
+                                {tasks.map((todo) => (
+                                    <li key={todo.id}>
+                                        <TodoItem todo={todo} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
           </div>
         </div>
         

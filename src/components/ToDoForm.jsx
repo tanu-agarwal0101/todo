@@ -8,6 +8,18 @@ function TodoForm() {
     const [priority, setPriority] = useState("Important");
     const [urgency, setUrgency] = useState("Urgent");
 
+    const importanceColors = {
+        Important: 'bg-red-500', // Red for Important
+        'Not Important': 'bg-gray-300', // Gray for Not Important
+      };
+    
+      const urgencyColors = {
+        Urgent: 'bg-yellow-500', // Yellow for Urgent
+        'Not Urgent': 'bg-green-300', // Green for Not Urgent
+      };
+    
+      const combinedColor = `${importanceColors[priority]} ${urgencyColors[urgency]}`; // Combine colors
+
     const add =(e)=>{
         e.preventDefault()
         if(!todo) return
@@ -22,13 +34,13 @@ function TodoForm() {
    return (
         <form  onSubmit={add} className="flex">
             <input type="text" placeholder="Write Todo..."
-            className="w-full border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white/20 py-1.5 " value={todo} onChange={(e)=> setTodo(e.target.value)}
+            className={`w-full border text-black border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white py-1.5`} value={todo} onChange={(e)=> setTodo(e.target.value)}
             />
-            <select value={priority} onChange={(e) => setPriority(e.target.value)} className="bg-white/20 text-black">
+            <select value={priority} onChange={(e) => setPriority(e.target.value)} className="bg-white text-black">
                 <option value="Important" className=''>Important</option>
                 <option value="Not Important">Not Important</option>
             </select>
-            <select value={urgency} onChange={(e) => setUrgency(e.target.value)} className="bg-white/20 pl-5 pr-4 text-black">
+            <select value={urgency} onChange={(e) => setUrgency(e.target.value)} className="bg-white lg:pl-5 lg:pr-4 text-black">
                 <option value="Urgent">Urgent</option>
                 <option value="Not Urgent">Not Urgent</option>
             </select>
